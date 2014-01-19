@@ -17,9 +17,9 @@
 //	* The code functions in arduino versions 1.0.1+
 //	* This code has not been tested for compadibility with older
 //	versions of the ide
-//	* This code is dependent on the Timer.h library written by
-//	Jordan Jones, and is subject to dependencies within the
-//	Timer.h library.
+//	* This code is dependent on the Timer.h, version 1.1+, library 
+//	written by Jordan Jones, and is subject to dependencies 
+//	within the Timer.h library.
 //	* This code assumes the user places a pull down resistor
 //	on the data pin of the micro controller to ensure
 //	accurate readings
@@ -62,6 +62,10 @@
 //		An example is now included in the library to show
 //		basic reading of a PIR sensor, and control over its
 //		power through the use of a transistor.
+//	* December 9th, 2013 - Jordan Jones Updated
+//		This update makes the library depended on the timer
+//		library version 1.1+ because the issue with the wait
+//		has been repaired.
 */
 
 
