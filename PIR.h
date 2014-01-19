@@ -17,6 +17,9 @@
 //	* The code functions in arduino versions 1.0.1+
 //	* This code has not been tested for compadibility with older
 //	versions of the ide
+//	* This code is dependent on the Timer.h library written by
+//	Jordan Jones, and is subject to dependencies within the
+//	Timer.h library.
 //	* This code assumes the user places a pull down resistor
 //	on the data pin of the micro controller to ensure
 //	accurate readings
@@ -28,7 +31,8 @@
 //	* When first powered on, the PIR sensor will send a high
 //	signal reguardless of the surrounding motion. The code does
 //	not currently account for this issue, but in future releases
-//	the problem will be removed.
+//	the problem will be removed. - Jordan Jones corrected 
+//	December 8th, 2013
 //	* The sensor readings are not 100% accurate while the sensor
 //	is not detecting motion. This issue is temporarily fixed by
 //	placing a pull down resistor on the data line.
@@ -48,7 +52,16 @@
 //	Jordan Duane Jones, Chief Programmer at RedShift Creations
 //	
 //	Modification Log:
-//	December 7th, 2013 - Initial Release without examples
+//	* December 7th, 2013 - Jordan Jones Initial Release 
+//		The library was created without examples
+//	* December 8th, 2013 - Jordan Jones Power on bug fixed
+//		The issue with the PIR reading motion on activation
+//		has been corrected. The library is now dependent on
+//		the Timer.h library to accomplish this.
+//	* December 8th, 2013 - Jordan Jones Example Created
+//		An example is now included in the library to show
+//		basic reading of a PIR sensor, and control over its
+//		power through the use of a transistor.
 */
 
 
@@ -61,6 +74,8 @@
 	#include <WProgram.h>
 #endif
 
+#include <Timer.h>
+
 class PIR{
 public:
 	PIR(uint8_t dataPin, uint8_t powerPin = 200);
@@ -70,8 +85,8 @@ public:
 
 private:
 	uint8_t m_dataPin, m_powerPin; 
-	boolean m_isEnabled;
-	
+	boolean m_isEnabled, m_isStarted;
+	Timer m_powerOnTime;
 };
 
 #endif
